@@ -1,15 +1,16 @@
 /**
  * This program was written simply to demonstrate all the basic Java statements
- * taught in Sololearn.com Java course and other similar courses.
- * You can both read it and run it.
- * Written in 2023 by Lukáš Tomek in IntelliJ Idea.
+ * taught in Sololearn.com Java course and other similar beginner courses.
+ * You can both read it and run it. Use it as an interactive Java cheat sheet.
+ * Written in by Lukáš Tomek in IntelliJ Idea.
  */
 
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {    //"void" - no return value, "String[] args" = input parameter is array of strings
+    public static void main(String[] args) {    //"public" - accessible by other classes, "static" - belongs to this class, only one instance exists
+                                                // "void" - no return value, "String[] args" = input parameter is array of strings
 
         // -----BASIC VARIABLE TYPES-----
         int x = 3; //"int x" is variable DECLARATION, "= 3" is variable INITIALIZATION
@@ -38,15 +39,15 @@ public class Main {
         System.out.println("Write down your MONEY available and press Enter (in USD):");
         int money = my_scanner.nextInt();
 
-        /* -----OUTPUT-----
-         * and incrementation and string concatenation
-         */
+        // -----OUTPUT-----
         System.out.println(x);
+        //Incrementing and decrementing by 1. Difference: "y++" uses y first, increments after but "++y" increments first, uses y after.
         System.out.println(y++);
-        System.out.println(y);
+        System.out.println(y--);
         System.out.println(z);
         System.out.println(g);
         System.out.println(h);
+        //Strings concatenation
         System.out.println("Your name is probably not: Gertruda " + name);
         System.out.println(i);
         System.out.println(a);
@@ -93,7 +94,7 @@ public class Main {
         if (age>=18 || money>1000){
             System.out.println("Enter permitted. Your age is right OR you are rich.");
         }
-        //switch - warning, if "break" statements are missing, fall through mechanism will follow even when case is not valid
+        //SWITCH - warning: when "break" statements are missing, fall through mechanism will run all the remaining cases, even when not valid
         int day = 3;
 
         switch (day) {
@@ -133,6 +134,7 @@ public class Main {
         System.out.println("End of while loop.");
 
         //if the condition is true, the loop will run (variable "test" is declared and recognized only within the loop!)
+        //format: for ([start with this];[condition];[increment/decrement])
         for (int test = 5; test>0; test--) {
             System.out.println(test);
         }
@@ -154,6 +156,7 @@ public class Main {
         //array literal
         String[] my_array2 = {"A", "B", "C", "D"};
         System.out.println(my_array2.length); //array length - can be used for looping through the array
+        //note: "literal" means data, that go to the variable. Examples of literals: "A",'CH',524.05f
 
         //for each loop
         for (String f: my_array2){ //symbol ":" is read "in" - that also helps to better understand this code
@@ -173,7 +176,7 @@ public class Main {
         // -----OOP-----
         /* • an OBJECT has:
                • IDENTITY (two apples, look the same but each has its own identity)
-               • ATTRIBUTES (attribute = current state description) (like an empty mug, a blue car)
+               • ATTRIBUTES (attribute = current state description) (like an empty mug, a blue car) (object's variables)
                • BEHAVIOUR (its function, what it is doing, METHODS) (like the car moves, the phone rings)
            • a CLASS is like a blueprint, definition, design of an object (more objects can be created based on one class)
              (an object is an INSTANCE of a class)
@@ -188,20 +191,21 @@ public class Main {
 
         //creating an object from a class (class declaration: see end of this file)
         Dog my_dog = new Dog();
+        //note: the new object is created just by "new Dog()". In variable "my_dog" is not the object but only an address pointing to the object!
         //calling its method
         my_dog.bark();
 
         //accessing object attributes directly (do not do this in real life, rather use getter and setter)
         Car my_ford = new Car();
         my_ford.age = 21;
-        my_ford.type = "Escort";
+        my_ford.type = "Kodiaq";
         my_ford.horn();
 
-        //creating an object using a CONSTRUCTOR (=method automatically run after creating an object)
+        //creating an object with a CONSTRUCTOR (=a method that automatically runs after creating an object)
         Food my_food = new Food();
         House my_house = new House("white");
 
-        //demonstrating REFERENCE variables (class declaration - see end of this file)
+        //demonstrating REFERENCE variables (details and class declaration - see end of this file)
         PersonaBirthday my_persona_birthday = new PersonaBirthday();
         my_persona_birthday.main();
 
@@ -213,8 +217,8 @@ public class Main {
         int m5 = Math.max(10,20);          //returns lower number
         double m6 = Math.pow(2,3);         //2 to the power 3 (=2*2*2)
         double m7 = Math.sqrt(4);          //square root of 4 (=2 because 2*2=4)
-        double m8 = Math.sin(45);           //sine
-        double m9 = Math.cos(45);           //cosine
+        double m8 = Math.sin(45);          //sine
+        double m9 = Math.cos(45);          //cosine
         System.out.println(m1);
         System.out.println(m2);
         System.out.println(m3);
@@ -256,27 +260,25 @@ public class Main {
          */
 
         final double pi = 3.14;
-        //pi = 5;    //this is not possible now
+        //pi = 5;    //this is not allowed now
 
         /* ----- PACKAGE ----
            • package = folder with classes
            • it helps to avoid name conflicts, control access to classes, group classes together
-           • under a package can be a subpackage
-           • when a class is moved in a package, this code automatically appears at the start of the class file:
+           • under a package there can be a subpackage
+           • when a class is moved in a package, this code automatically appears at the start of that class file:
              package package_name;
            • to import class from a package, use this code at the start of the Main class:
              import package_name.Class_name;
            • to import all classes from a package:
              import package_name.*
-         */
 
-        /* -----ENCAPSULATION-----
+           -----ENCAPSULATION-----
            • variables of one class are hidden from the other classes
-           • how to do it: set variables as private, declare getter and setter method (setter can validate input data first)
-        */
+           • how to do it: set variables as private, declare getter and setter methods (setter can validate input data first)
 
-        /* -----INHERITANCE-----
-           • one class acquires the properties (methods and variables) of another class
+           -----INHERITANCE-----
+           • subclass copies the code (methods and variables) of superclass
            • subclass (derived class, child class) EXTENDS superclass (base class, parent class)
            • More_specific extends Less_specific (we can read "extends" as "is a" and it makes sense, for example "Dog is an Animal")
            • it allows reusing code, we can build a new class based on an existing class
@@ -288,11 +290,11 @@ public class Main {
                      • constructor without a parameter: when creating an object from subclass,
                        the constructor of superclass will automatically run - because compiler automatically inserts constructor
                        with "super();" to subclass (though we do not see it in the code. We can also insert it manually.)
-                     • constructor with parameter: we must add "super(variable)" at the beginning of the subclass's constructor,
+                     • constructor with parameter: we must add "super(variable);" at the beginning of the subclass's constructor,
                        and the superclass constructor will run automatically when creating an object from this subclass
         */
 
-        Employee em = new Employee();         //This also runs Employee constructor
+        Employee em = new Employee();         //This runs Employee constructor automatically
         em.name = "John Smith";
         em.age = 38;
         em.salary = 100000.00;
@@ -389,7 +391,7 @@ class Car {
             • private: accessible only within the class
          */
 class Weather {
-    private int temperature; //can not be called outside the object, works only within the object (class)
+    private int temperature;     //can not be called outside the object, works only within the object (class)
     private int pressure;
 
     public void today() {
@@ -415,7 +417,7 @@ class Vehicle {
     // Setter
     public void setColor(String color) {
         this.color = color;    //"this." means this class/object. Without "this." we mean a variable in the current method level.
-                               //If a method variable and a class variable have the same name (like here), this can discern between them.
+                               //If a method variable and a class variable have the same name (like here), this discerns between them.
     }
 }
 
