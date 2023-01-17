@@ -309,10 +309,30 @@ public class Main {
         em.printData();
         pr.printData();
 
-        /* continue here!
-           POLYMORPHISM
+        /* -----POLYMORPHISM-----
+        • poly=many, morphism=forms
+        • e.g.: a man is a father,employee,husband (one man with multiple functions, different behaviour in different situations)
+        • one method (the same name), multiple implementations (different behaviour based on how it is called)
+        • here: one method makeSound(), 3 various implementations (1 in superclass and 2 in subclasses)
+          • the methods in subclasses OVERRIDE the method in superclass
+        */
+
+        Animal animal_a = new Animal();
+        Animal animal_b = new Bee();    //disadvantage of creating the variable from superclass (=UPCASTING): we can access
+                                        //only the overridden methods, not the new (added) subclass methods!
+        Animal animal_c = new Bear();
+
+        animal_a.makeSound();
+        animal_b.makeSound();
+        animal_c.makeSound();
+
+        //If we want to access not only the overridden methods but also the added methods, we have to create the variable from the subclass:
+        Bee animal_d = new Bee();
+        animal_d.collectHoney();
+
+        /*
            ABSTRACTION
-         */
+        */
 
 
 
@@ -542,7 +562,38 @@ class Programmer extends Employee{      //More_specific extends Less_specific, P
 
     public void printData(){
         super.printData();
-        System.out.println(
-                "language: "+ language );
+        System.out.println("language: "+ language );
+    }
+}
+
+/*-----POLYMORPHISM-----
+  • one method (the same name), multiple implementations (different behaviour based on how it is called)
+  • here: one method makeSound(), 3 various implementations (1 in superclass and 2 in subclasses)
+    • the methods in subclasses OVERRIDE the method in superclass
+
+  -----METHOD OVERRIDING -----
+  • method in subclass overrides method in superclass with the same name
+    (=there is a specific implementation of this method in the subclass)
+  • =RUNTIME POLYMORPHISM
+  • constructors can not be overridden
+  • final or static methods can not be overridden
+ */
+
+class Animal {
+    public void makeSound() {
+        System.out.println("Animal says: Grr grr");
+    }
+}
+class Bee extends Animal {
+    public void makeSound() {
+        System.out.println("Bee says: Buzz buzz");
+    }
+    public void collectHoney() {
+        System.out.println("Bee collects honey.");
+    }
+}
+class Bear extends Animal {
+    public void makeSound() {
+        System.out.println("Bear says: Growl growl");
     }
 }
