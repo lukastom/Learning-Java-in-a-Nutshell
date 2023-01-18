@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {    //"public" - accessible by other classes, "static" - belongs to this class, only one instance exists
                                                 // "void" - no return value, "String[] args" = input parameter is array of strings
 
-        // -----BASIC VARIABLE TYPES-----
+        // ----- BASIC VARIABLE TYPES -----
         int x = 3; //"int x" is variable DECLARATION, "= 3" is variable INITIALIZATION
         double y = 586.8;
         String z = "Gnome";
@@ -30,7 +30,7 @@ public class Main {
         d /= x;
         e %= x;
 
-        //-----USER INPUT-----
+        //----- USER INPUT -----
         System.out.println("Write down your SURNAME and press Enter:");
         Scanner my_scanner = new Scanner(System.in);
         String name = my_scanner.nextLine();
@@ -39,7 +39,7 @@ public class Main {
         System.out.println("Write down your MONEY available and press Enter (in USD):");
         int money = my_scanner.nextInt();
 
-        // -----OUTPUT-----
+        // ----- OUTPUT -----
         System.out.println(x);
         //Incrementing and decrementing by 1. Difference: "y++" uses y first, increments after but "++y" increments first, uses y after.
         System.out.println(y++);
@@ -56,7 +56,7 @@ public class Main {
         System.out.println(d);
         System.out.println(e);
 
-        // -----CONDITIONS-----
+        // ----- CONDITIONS -----
         a = 4;
         if (a>3){
             System.out.println("Variable a is greater than 3.");
@@ -123,7 +123,7 @@ public class Main {
                 System.out.println("Error!");
         }
 
-        // -----LOOPS-----
+        // ----- LOOPS -----
         x = 3;
 
         //if the condition is true, the loop will run
@@ -146,7 +146,7 @@ public class Main {
             x++;
         } while (x<0);
 
-        // -----ARRAYS-----
+        // ----- ARRAYS -----
         int[] my_array1 = new int[3]; //another variant: int my_array1[] = new int[3];
         my_array1[0] = 5;
         my_array1[1] = 6;
@@ -173,7 +173,7 @@ public class Main {
                               {7}
                             };
 
-        // -----OOP-----
+        // ----- OOP -----
         /* • an OBJECT has:
                • IDENTITY (two apples, look the same but each has its own identity)
                • ATTRIBUTES (attribute = current state description) (like an empty mug, a blue car) (object's variables)
@@ -209,7 +209,7 @@ public class Main {
         PersonaBirthday my_persona_birthday = new PersonaBirthday();
         my_persona_birthday.main();
 
-        // -----MATH CLASS-----
+        // ----- MATH CLASS -----
         int m1 = Math.abs(-28);            //absolute value
         double m2 = Math.ceil(0.123);      //rounds UP to the nearest integer (returns double)
         double m3 = Math.floor(5.897);     //rounds DOWN to the nearest integer (returns double)
@@ -229,7 +229,7 @@ public class Main {
         System.out.println(m8);
         System.out.println(m9);
 
-        /* -----STATIC VARIABLES-----
+        /* ----- STATIC VARIABLES -----
            • BELONGS TO A CLASS, not a specific instance (object)
            • shared by all objects created from a class
            • only one instance of static variable exists
@@ -243,9 +243,9 @@ public class Main {
         System.out.println(c1.COUNT);
         System.out.println(c2.COUNT);         //all these statements throw number 2, they are equivalent
 
-         /* -----STATIC METHODS (CLASS METHODS)-----
+         /* ----- STATIC METHODS (CLASS METHODS) -----
            • can be CALLED DIRECTLY WITHOUT CREATING AN OBJECT (bypassing the system of objects)
-           • use static method FOR CHANGING STATIC VARIABLE (so this one method influences all objects created from the class)
+           • use static method also FOR CHANGING STATIC VARIABLE (so this one method influences all objects created from the class)
            • restrictions: static method can call only static methods, access only static variables, can not refer to "this" or "super"
            • why is the main method always static? Because JVM does not need to create an object, runs it straight from class and saves memory in this way
          */
@@ -253,7 +253,7 @@ public class Main {
         Counter.incrementCounter();           //calling method directly from class, no object is created
         System.out.println(Counter.COUNT);
 
-        /* -----FINAL-----
+        /* ----- FINAL -----
            • final variable can not be changed
            • final method can't be overridden (?????)
            • inheritance of final class is not allowed
@@ -273,11 +273,11 @@ public class Main {
            • to import all classes from a package:
              import package_name.*
 
-           -----ENCAPSULATION-----
+           ----- ENCAPSULATION -----
            • variables of one class are hidden from the other classes
            • how to do it: set variables as private, declare getter and setter methods (setter can validate input data first)
 
-           -----INHERITANCE-----
+           ----- INHERITANCE -----
            • subclass copies the code (methods and variables) of superclass
            • subclass (derived class, child class) EXTENDS superclass (base class, parent class)
            • More_specific extends Less_specific (we can read "extends" as "is a" and it makes sense, for example "Dog is an Animal")
@@ -309,7 +309,7 @@ public class Main {
         em.printData();
         pr.printData();
 
-        /* -----POLYMORPHISM-----
+        /* ----- POLYMORPHISM -----
         • poly=many, morphism=forms
         • e.g.: a man is a father,employee,husband (one man with multiple functions, different behaviour in different situations)
         • one method (the same name), multiple implementations (different behaviour based on how it is called)
@@ -319,7 +319,7 @@ public class Main {
 
         Animal animal = new Animal();
         Animal animal_bee = new Bee();    //disadvantage of creating the variable from superclass (=UPCASTING): we can access
-                                   //only the overridden methods, not the new (added) subclass methods!
+                                          //only the overridden methods, not the new (added) subclass methods!
         Bear bear = new Bear();
 
         animal.makeSound();
@@ -330,9 +330,21 @@ public class Main {
         Bee bee = new Bee();
         bee.collectHoney();
 
+        //OVERLOADING (methods with the same name differing in parameters (type, number or both) (=COMPILE-TIME POLYMORPHISM)
+        System.out.println(max_number(8, 17));
+        System.out.println(max_number(3.14, 7.68));
+
+        // ----- ABSTRACT CLASS, ABSTRACT METHOD -----
+
+        Order fedEx_order = new FedEx();    //"Order" is the abstract class
+        //"FedEx fedex_order = new FedEx();" would work too
+        fedEx_order.sendOrder();
+
         /*
-           ABSTRACTION
+          ----- INTERFACE -----
         */
+        LowIncome poor_client = new LowIncome();
+        poor_client.offerProduct();
 
 
 
@@ -367,6 +379,24 @@ public class Main {
         return a+b;
     }
 
+    //OVERLOADING (methods with the same name differing in parameters (type, number or both) (=COMPILE-TIME POLYMORPHISM)
+    static double max_number(double a, double b) {
+        if(a > b) {
+            return a;
+        }
+        else {
+            return b;
+        }
+    }
+    static int max_number(int a, int b) {
+        if(a > b) {
+            return a;
+        }
+        else {
+            return b;
+        }
+    }
+
 
 
 
@@ -382,7 +412,7 @@ public class Main {
 
 }
 
-/* -----CLASS DECLARATION-----
+/* ----- CLASS DECLARATION -----
    • If it is not public, it can be here. If public, it must be in a separate file called "Dog.java".
  */
 class Dog {
@@ -399,7 +429,7 @@ class Car {
     }
 }
 
-/* -----ACCESS MODIFIERS-----
+/* ----- ACCESS MODIFIERS -----
           • class:
             • public: accessible by other classes
             • - (=default): accessible only by classes in the same package
@@ -419,7 +449,7 @@ class Weather {
     }
 }
 
-/* -----GETTER AND SETTER-----
+/* ----- GETTER AND SETTER -----
      • It would be a bad practice to tinker with class variables (attributes) from outside. Like stopping a bicycle by sticking a rod into the wheel.
      • To make it safe, we make all the attributes private (accessible only within the class/object).
      • For safe data input, we create a SETTER method.
@@ -441,7 +471,7 @@ class Vehicle {
     }
 }
 
-/* -----CONSTRUCTOR-----
+/* ----- CONSTRUCTOR -----
   • Constructor is a method within the class, that will automatically run (be invoked), when an object is created from the class.
     It initializes the class (=sets starting variable values, sets it to its default state).
   • Name is the same as its class name.
@@ -521,7 +551,7 @@ class Persona {
     }
 }
 
-//-----STATIC VARIABLES-----
+//----- STATIC VARIABLES -----
 class Counter {
     public static int COUNT=0;     //variable COUNT is STATIC: it is shared by all objects created from this class and usually written in CAPS
     Counter() {
@@ -533,7 +563,7 @@ class Counter {
     }
 }
 
-/*-----INHERITANCE-----
+/*----- INHERITANCE -----
   • SubClass extends SuperClass
  */
 
@@ -566,12 +596,12 @@ class Programmer extends Employee{      //More_specific extends Less_specific, P
     }
 }
 
-/*-----POLYMORPHISM-----
+/*----- POLYMORPHISM -----
   • one method (the same name), multiple implementations (different behaviour based on how it is called)
   • here: one method makeSound(), 3 various implementations (1 in superclass and 2 in subclasses)
     • the methods in subclasses OVERRIDE the method in superclass
 
-  -----METHOD OVERRIDING -----
+  ----- METHOD OVERRIDING -----
   • method in subclass overrides method in superclass with the same name
     (=there is a specific implementation of this method in the subclass)
   • =RUNTIME POLYMORPHISM
@@ -597,3 +627,52 @@ class Bear extends Animal {
         System.out.println("Bear says: Growl growl");
     }
 }
+
+/*
+  ----- ABSTRACT CLASS -----
+  • abstract class is an abstraction of subclasses - we make subclass from it, and only from this subclass we can create object
+   (it is not possible to create object from an abstract class)
+  • in abstract class there can be ABSTRACT METHODS = declared methods without implementation (without any code)
+  • it serves as an abstraction of subclasses and a basic model, after which the subclasses are made (=default implementation, common definition)
+   • subclasses have to implement the abstract classes (similar to overriding) (otherwise they must be also abstract)
+  • if a developer has a structure already in mind, he can write an abstract class, even if implementation details
+   are not known yet
+  • abstraction shows, how classes/object will be USEd, look like, not how they will WORK
+   • (Example: everyone at home uses a sink+tap to get water - they know its function but not its exact inner workings)
+  • can have constructor
+*/
+
+abstract class Order {
+    int order_id = 0;
+    abstract void sendOrder();
+}
+class FedEx extends Order {
+    public void sendOrder() {
+        System.out.println("Sending the order by Fedex.");
+    }
+}
+
+/* ----- INTERFACE -----
+  • interface = abstract class with only abstract methods (methods are implicitly abstract and public) (=total abstraction)
+  • Interfaces specify what a class must do and not how. It is the blueprint of the class behaviour.
+  • variables will be implicitly public static final
+  • no constructor allowed
+  • when you implement an interface, you have to override all of its methods
+  • a class can implement multiple interfaces!
+  • how to extend + implement multiple:
+    public class Dog extends Animal implements Swimmer, Player {
+ */
+
+interface Client {
+    void offerProduct();
+    void greet();
+}
+class LowIncome implements Client {
+    public void offerProduct() {
+        System.out.println("You can borrow money!");
+    }
+    public void greet() {
+        System.out.println("Hi.");
+    }
+}
+
