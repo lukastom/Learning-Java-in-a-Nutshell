@@ -317,18 +317,18 @@ public class Main {
           • the methods in subclasses OVERRIDE the method in superclass
         */
 
-        Animal animal_a = new Animal();
-        Animal animal_b = new Bee();    //disadvantage of creating the variable from superclass (=UPCASTING): we can access
-                                        //only the overridden methods, not the new (added) subclass methods!
-        Animal animal_c = new Bear();
+        Animal animal = new Animal();
+        Animal animal_bee = new Bee();    //disadvantage of creating the variable from superclass (=UPCASTING): we can access
+                                   //only the overridden methods, not the new (added) subclass methods!
+        Bear bear = new Bear();
 
-        animal_a.makeSound();
-        animal_b.makeSound();
-        animal_c.makeSound();
+        animal.makeSound();
+        animal_bee.makeSound();
+        bear.makeSound();
 
         //If we want to access not only the overridden methods but also the added methods, we have to create the variable from the subclass:
-        Bee animal_d = new Bee();
-        animal_d.collectHoney();
+        Bee bee = new Bee();
+        bee.collectHoney();
 
         /*
            ABSTRACTION
@@ -445,7 +445,7 @@ class Vehicle {
   • Constructor is a method within the class, that will automatically run (be invoked), when an object is created from the class.
     It initializes the class (=sets starting variable values, sets it to its default state).
   • Name is the same as its class name.
-  • No return type. (but without "void"!)x
+  • No return type. (but without "void"!)
  */
 class Food {
     private String color;
