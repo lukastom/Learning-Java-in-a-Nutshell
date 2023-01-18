@@ -445,7 +445,7 @@ class Vehicle {
   • Constructor is a method within the class, that will automatically run (be invoked), when an object is created from the class.
     It initializes the class (=sets starting variable values, sets it to its default state).
   • Name is the same as its class name.
-  • No return type. (but without "void"!)
+  • No return type. (but without "void"!)x
  */
 class Food {
     private String color;
