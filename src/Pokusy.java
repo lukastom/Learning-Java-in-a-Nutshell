@@ -1,49 +1,41 @@
-class Pokusy {
-    public static void main(String[] args) {
-        Animal1 dog = new Dog1();
-        Animal1 cat = new Cat1();
+/* Java program to demonstrate upcasting */
+import java.io.*;
+import java.util.*;
 
-        dog.swim();
-        dog.play();
-        cat.swim();
-        cat.play();
-
+//Creating a parent class Sport
+class Sport{
+    //Method to display name
+    void displayName(){
+        System.out.println("Sport");
     }
 }
 
-interface Swimmer {
-    void swim();
+//Creating a child class Cricket
+class Cricket extends Sport{
+    //Method to display name
+    void displayName(){
+        System.out.println("Cricket");
+    }
 }
 
-interface Player {
-    void play();
+//Creating a child class Football
+class Football extends Sport{
+    //Method to display name
+    void displayName(){
+        System.out.println("Football");
+    }
 }
 
-//implement the Swimmer and the Player interfaces
-abstract class Animal1 implements Swimmer, Player{
-    public abstract void swim();
+public class Pokusy {
+    public static void main (String[] args) {
+        //Upcasting
+        Cricket sport1 = new Cricket();
+        //calling method
+        sport1.displayName();
 
-    public abstract void play();
-}
-
-
-class Dog1 extends Animal1 {
-    //Override the swim() and the play() methods
-    public void swim(){
-        System.out.println("Dog is swimming");
-    };
-    public void play(){
-        System.out.println("Dog is playing");
-    };
-}
-
-
-class Cat1 extends Animal1 {
-    //Override the swim() and the play() methods
-    public void swim(){
-        System.out.println("Cat is swimming");
-    };
-    public void play(){
-        System.out.println("Cat is playing");
-    };
+        //Upcasting
+        Football sport2 = new Football();
+        //calling method
+        sport2.displayName();
+    }
 }

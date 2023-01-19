@@ -346,6 +346,51 @@ public class Main {
         LowIncome poor_client = new LowIncome();
         poor_client.offerProduct();
 
+        /*
+          ----- TYPE CASTING -----
+          • = Assigning a value of one type to a variable of another type (data type conversion)
+        */
+
+        int outcome = (int) 3.14;   //floating point to int
+        System.out.println(outcome);
+
+        int outcome2 = (int) 'j';   //char to integer
+        System.out.println(outcome2);
+
+        /* ----- CLASS UPCASTING -----
+           • result: only superclass methods (and overridden methods) are accessible from object created from the subclass
+           • use: it allows creating arrays or collections (Lists, Maps, Sets, etc.) of the parent type where child objects are stored.
+         */
+        Animal my_animal = new Bee();     //object created from subclass is casted to variable of superclass type
+
+        /* ----- CLASS DOWNCASTING -----
+          • When you downcast, you're basically saying, hey I know this particular Animal is actually a Dog, because
+            it's barking (can be checked with "instanceof"). Therefore, I want to call a method that's dog-specific, like Bark().
+            If you try to downcast an Animal into a Dog, but it's not *actually* a Dog, your program will crash.
+          • Class downcasting is just bad design most of the time. It is used rarely. Some right uses:
+            • with connection to equals method of Object
+            • when using a framework (like coding for Android), where we want to access the subclass methods from a superclass
+          • The result is: even if it is superclass type, we can call the subclass overridden methods this way
+         */
+        //Bee my_bee = new Animal();     //This is not allowed! We can not say "animal IS A bee"
+        Bee my_bee = (Bee) my_animal;
+        my_bee.collectHoney();
+        //shorter form:
+        ((Bee) my_animal).collectHoney();
+
+        /* ----- ANONYMOUS CLASS -----
+           • = inner class without name, that overrides (modify) a method in an object
+             • the override (modification) is applicable only to the current object
+           • we can use @Override annotation, so the code is clear
+         */
+
+
+
+
+
+
+
+
 
 
 
@@ -396,6 +441,14 @@ public class Main {
             return b;
         }
     }
+
+
+
+
+
+
+
+
 
 
 
