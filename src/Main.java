@@ -2,7 +2,7 @@
  * This program was written simply to demonstrate all the basic Java statements
  * taught in Sololearn.com Java course and other similar beginner courses.
  * You can both read it and run it. Use it as an interactive Java cheat sheet.
- * Written in by Lukáš Tomek in IntelliJ Idea.
+ * Written by Lukáš Tomek in IntelliJ Idea.
  */
 
 import java.util.Objects;
@@ -140,7 +140,7 @@ public class Main {
             System.out.println(test);
         }
 
-        //the loop will run at least once, even if the condition is not true
+        //this loop will run at least once, even if the condition is not true
         x = 1;
         do {
             System.out.println(x);
@@ -183,7 +183,7 @@ public class Main {
              (an object is an INSTANCE of a class)
          */
 
-        //usage or CALL of a method (the method is DECLARED at the end of this file)
+        //usage or CALL of a method (the method is DECLARED later in this file)
         sayHi();
         sayHi();
 
@@ -192,7 +192,7 @@ public class Main {
 
         //creating an object from a class (class declaration: see end of this file)
         Dog my_dog = new Dog();
-        //note: the new object is created just by "new Dog()". In variable "my_dog" is not the object but only an address pointing to the object!
+        //note: the new object is created just by "new Dog()". In variable "my_dog" is not the object but only an address pointing to the object (=reference)!
         //calling its method
         my_dog.bark();
 
@@ -335,14 +335,14 @@ public class Main {
         System.out.println(max_number(8, 17));
         System.out.println(max_number(3.14, 7.68));
 
-        // ----- ABSTRACT CLASS, ABSTRACT METHOD -----
+        // ----- ABSTRACT CLASS, ABSTRACT METHOD ----- (see the classes at the end of this file)
 
         Order fedEx_order = new FedEx();    //"Order" is the abstract class
         //"FedEx fedex_order = new FedEx();" would work too
         fedEx_order.sendOrder();
 
         /*
-          ----- INTERFACE -----
+          ----- INTERFACE ----- (see the classes at the end of this file)
         */
         LowIncome poor_client = new LowIncome();
         poor_client.offerProduct();
@@ -369,7 +369,7 @@ public class Main {
             it's barking (can be checked with "instanceof"). Therefore, I want to call a method that's dog-specific, like Bark().
             If you try to downcast an Animal into a Dog, but it's not *actually* a Dog, your program will crash.
           • Class downcasting is just bad design most of the time. It is used rarely. Some right uses:
-            • with connection to equals method of Object
+            • in .equals() method override (when comparing 2 objects)
             • when using a framework (like coding for Android), where we want to access the subclass methods from a superclass
           • The result is: even if it is superclass type, we can call the subclass overridden methods this way
          */
@@ -432,13 +432,13 @@ public class Main {
                                                          • Reason: default Java equals() implementation
                                                            returns true if the objects' CONTENTS is the same
                                                            AND ONLY if the 2 variables are non-null and both
-                                                           point to the *same reference* (if x==y also returns true)!
+                                                           point to the *same reference* (if obj_a==obj_b also returns true)!
 
-          • If we want to compare 2 objects having different IDENTITY (different reference) but the same CONTENTS, we must create
+          • If we want to compare 2 objects having DIFFERENT IDENTITY (different reference) but the SAME CONTENTS, we must create
             our own equals() override.
           • In order to other things work lately, we must also create hashCode() override.
-          • Also: default .equals() is specific, our overridden .equals() will be more general.
-          • How in Intellij Idea: place the cursor on the right place in code (in the class upon which we want to call equals() method),
+          • In other words: default .equals() is specific, our overridden .equals() will be more general.
+          • How to do it in Intellij Idea: place the cursor on the right place in code (in the class upon which we want to call equals() method),
             in menu choose Code>Generate>equals() and hashCode()
           • Advantage: when generating the equals() override, we can customize it (e.g. choose what fields (attributes, variables) to compare
         */
