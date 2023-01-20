@@ -5,6 +5,7 @@
  * Written in by Lukáš Tomek in IntelliJ Idea.
  */
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -378,11 +379,75 @@ public class Main {
         //shorter form:
         ((Bee) my_animal).collectHoney();
 
-        /* ----- ANONYMOUS CLASS -----
+        /* ----- ANONYMOUS INNER CLASS, ANNOTATIONS -----
            • = inner class without name, that overrides (modify) a method in an object
              • the override (modification) is applicable only to the current object
-           • we can use @Override annotation, so the code is clear
+           • we can use @Override ANNOTATION, so the code is clear
+             • Annotations do not change the action of a compiled program.
+             • Annotations are not just comments ignored by the compiler. Compiler reads them.
+             • annotations are like metadata for methods, classes, variables etc.
+             • if we use @Override annotation, but the code is actually not an override, the program will not compile.
+               So, by using @Override annotation, we tell the compiler, that our intention was to override.
          */
+        Bee my_cute_bee = new Bee() {
+            @Override public void collectHoney() {
+                System.out.println("Oh man, the bee collects honey, whoooo yeaaaaah. Overriding!");
+            }
+        };
+        my_cute_bee.collectHoney();
+
+        // ----- NESTED INNER CLASS ----- (see the class at end of this file)
+        Outer obj = new Outer();     //this runs the constructor, which runs the inner class
+
+        /* ----- .EQUALS() ------
+          • "==" - operator - compares reference (IDENTITY)
+          • "equals()" - method - compares contents (EQUIVALENCY)
+         */
+        String a_name = "John";
+        String b_name = "John";
+
+        System.out.println(a_name==b_name);
+        System.out.println(a_name.equals(b_name));
+
+        A obj_a = new A();
+        obj_a.sayHi();
+
+        A obj_b = new A();
+        obj_b.sayHi();
+
+        System.out.println(obj_a==obj_b);   //This is false, because the 2 variables reference 2 different objects.
+                                            //References (memory addresses) are compared here.
+                                            //It's like a question: do they both reference the same object?
+
+        A obj_c = obj_a;
+        System.out.println(obj_c==obj_a);   //This is true, because both variables reference the same object.
+                                            // References (memory addresses) are compared here.
+
+        System.out.println(obj_c.equals(obj_a));    //This is true, because both variables reference the same object
+                                                    //Reason: default Java .equals():
+                                                    //1) compares object CONTENTS && 2) both variables must reference the same object
+
+        System.out.println("Thanks to our .equals() override, this is now true:");
+        System.out.println(obj_a.equals(obj_b));      /* Without our own equals() override THIS IS FALSE!!
+                                                         • Reason: default Java equals() implementation
+                                                           returns true if the objects' CONTENTS is the same
+                                                           AND ONLY if the 2 variables are non-null and both
+                                                           point to the *same reference* (if x==y also returns true)!
+
+          • If we want to compare 2 objects having different IDENTITY (different reference) but the same CONTENTS, we must create
+            our own equals() override.
+          • In order to other things work lately, we must also create hashCode() override.
+          • Also: default .equals() is specific, our overridden .equals() will be more general.
+          • How in Intellij Idea: place the cursor on the right place in code (in the class upon which we want to call equals() method),
+            in menu choose Code>Generate>equals() and hashCode()
+          • Advantage: when generating the equals() override, we can customize it (e.g. choose what fields (attributes, variables) to compare
+        */
+
+
+
+
+
+
 
 
 
@@ -729,3 +794,43 @@ class LowIncome implements Client {
     }
 }
 
+/* ----- NESTED INNER CLASS -----
+ • = a class in a class
+ • Usage: If a class is useful to only one other class, then it is logical to embed it in that class and keep the two together.
+ • Ex.: Car class. A subclass would be a specific *type* of car - Mercedes, Ford, etc.
+   An inner class would be a specific *part* of a car, such as an engine, tire, etc.
+ • The nested class can access all the member variables and methods of its outer class.
+   • If we declare an inner class private, it cannot be accessed from an object outside the class.
+ */
+class Outer {
+    Outer(){
+        Inner obj = new Inner();
+        obj.print();
+    }
+    private class Inner {      //class in class = nested inner class
+        public void print() {
+            System.out.println("In a nested class method");
+        }
+    }
+}
+
+/* ----- OVERRIDING .equals() and .hashCode() so we can compare an object with the object created from this class
+   • the overridden methods were generated by IDE
+ */
+class A {
+    int x = 1;
+    public void sayHi (){
+        System.out.println("Hi, " + x + "!");
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        A a = (A) o;
+        return x == a.x;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(x);
+    }
+}
