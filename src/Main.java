@@ -24,12 +24,12 @@ public class Main {
         int b = 4;
         int c = 4;
         int d = 4;
-        int e = 4;
+        int ee = 4;
         a -= x; //the same as a = a - x;
         b += x; //the same as b = b + x; etc.
         c *= x;
         d /= x;
-        e %= x;
+        ee %= x;
 
         //----- USER INPUT -----
         System.out.println("Write down your SURNAME and press Enter:");
@@ -55,7 +55,7 @@ public class Main {
         System.out.println(b);
         System.out.println(c);
         System.out.println(d);
-        System.out.println(e);
+        System.out.println(ee);
 
         // ----- CONDITIONS -----
         a = 4;
@@ -220,6 +220,7 @@ public class Main {
         double m7 = Math.sqrt(4);          //square root of 4 (=2 because 2*2=4)
         double m8 = Math.sin(45);          //sine
         double m9 = Math.cos(45);          //cosine
+        double m10 = Math.PI;              //pi
         System.out.println(m1);
         System.out.println(m2);
         System.out.println(m3);
@@ -229,6 +230,7 @@ public class Main {
         System.out.println(m7);
         System.out.println(m8);
         System.out.println(m9);
+        System.out.println(m10);
 
         /* ----- STATIC VARIABLES -----
            • BELONGS TO A CLASS, not a specific instance (object)
@@ -441,7 +443,110 @@ public class Main {
           • How to do it in Intellij Idea: place the cursor on the right place in code (in the class upon which we want to call equals() method),
             in menu choose Code>Generate>equals() and hashCode()
           • Advantage: when generating the equals() override, we can customize it (e.g. choose what fields (attributes, variables) to compare
+            which makes it more efficient. Comparing everything in 2 objects would be very slow in some cases.
+
+            ----- ENUM demonstration ----- (for the enum, see classes at the end of this file)
         */
+
+        Player player1 = new Player(Difficulty.EASY);
+        Player player2 = new Player(Difficulty.MEDIUM);
+        Player player3 = new Player(Difficulty.HARD);
+
+        /* ----- JAVA API -----
+           • API = Application Programming Interface
+           • Java API is a collection of classes and interfaces that have been written for you to use
+           • List and documentation: https://docs.oracle.com/en/java/javase/19/docs/api/index.html
+           • import the complete needed package: import java.util.*;
+
+           ----- EXCEPTION HANDLING (TRY-CATCH) -----
+           • Exception = “unwanted or unexpected event”, which occurs during the execution of the program (at run-time) and terminates it.
+             • Examples:
+               • invalid data entered by a user
+               • opening a file that does not exist
+               • lost network connection
+               • insufficient memory
+               (3 types: user error, programmer error, physical resource issue)
+           • Try-catch is used to prevent the termination of the entire program due to possible errors in a particular block of code.
+
+
+        We await that in the "try" block, an exception could occur */
+        try {
+            int my_array[ ] = new int[2];
+            System.out.println(my_array[5]);  //this is wrong
+        /* • If the type of exception that occurred is listed in a catch block, the exception is passed to the catch block
+             like an argument into a method.
+           • The "Exception" type can be used to catch all possible exceptions.
+           • We can use one catch block or multiple catch blocks that handle different exceptions separately.
+             • Order catch blocks from specific to general
+             • After specific exceptions, you can use the Exception type to handle all other exceptions as the last catch.
+        */
+        } catch (ArrayIndexOutOfBoundsException e1) {
+            System.out.println("Array Index Out Of Bounds!");
+        } catch (Exception e2) {
+            System.out.println("An error occurred!");
+        }
+        /* Without try-catch, this program would crash.
+
+          ----- THROWS, THROW -----
+         • The "throws" keyword indicates what exception type may be thrown by a method
+         • There are many exception types available in Java: ArithmeticException, ClassNotFoundException, ArrayIndexOutOfBoundsException, SecurityException, InputMismatchException etc.
+         */
+        try {
+            System.out.println(division(42, 0));     //the exception is thrown to the caller and caught in the "catch" part
+        }
+        catch (ArithmeticException e){
+            System.out.println("Division by Zero - caught in the main() method!");
+        }
+
+        /*
+         ----- THREADS -----
+         • Java = multi-threaded programming language.
+         • We can subdivide specific operations within a single application into individual threads that all run in parallel.
+           • Used often in e.g. games.
+         • Every main Java program implicitly runs in 1 Main Thread.
+         • life-cycle of a thread:
+
+                      NEW         →───── stop() →──
+                       ↓                            ╲
+                     start()                          ╲
+                       ↓                                ╲
+           ┌──────→ RUNNABLE      →───── stop() →─────────
+           │         ↓    ↑                                ╲
+           │      run() yield()                              ╲
+           │         ↓    ↑                                    ╲
+        resume()    RUNNING       →───── end of execution →───── DEAD (KILLED)
+        notify()       ↓                                       ╱
+           │        suspend()                                ╱
+           │         wait()                                ╱
+           │         sleep()                             ╱
+           │           ↓                               ╱
+           └─────←  BLOCKED,      →───── stop() →─────
+                   (SUSPENDED,
+                    SLEEPING,
+                    WAITING,
+                     IDLE)
+         • 2 methods, how to create new threads:
+           1) EXTEND THREAD CLASS
+         */
+
+        PlayMusic pmObj = new PlayMusic();
+        pmObj.start();     /* • start() method is defined in Thread class. It prepares this thread in memory (allocates memory, processor etc.).
+                                After that it runs the overridden .run() method in our PlayMusic class (see the end of this file) = runs the thread.
+                              • start() is like starting a car (and also checking battery, gas...), run() like driving it
+
+           • Every thread has a priority to help the operating system determine the order in which to schedule threads.
+           • Minimum is 1, maximum is 10, default is 5. We can set it.
+        */
+        DrawImage diObj = new DrawImage();
+        System.out.println("Default priority of the thread is: " + diObj.getPriority());
+        diObj.setPriority(7);
+        diObj.start();
+
+        //2) IMPLEMENTING THE RUNNABLE INTERFACE (better way)
+        Thread mnObj = new Thread(new MoveNpc());
+        mnObj.start();
+
+
 
 
 
@@ -504,6 +609,17 @@ public class Main {
         }
         else {
             return b;
+        }
+    }
+
+    /* ----- THROWS, THROW -----
+     • The "throws" keyword indicates what exception type may be thrown by a method
+     */
+    static int division(int a, int b) throws ArithmeticException {      //multiple throws can be listed (comma separated)
+        if(b == 0) {
+            throw new ArithmeticException("Division by Zero - caught in the division() method!");    //we must throw object, so use "new"
+        } else {
+            return a / b;
         }
     }
 
@@ -832,5 +948,75 @@ class A {
     @Override
     public int hashCode() {
         return Objects.hash(x);
+    }
+}
+
+/* ----- ENUM -----
+• "enum" is an abbreviation of "enumeration" (= list of constants)
+  • convention: the list should go first, in all caps
+  • every item on the list is internally converted to "public static final"
+  • order of items is important
+• example: card suits, planets, days of the week, months, choices on a menu
+  • it is like saying: we decided, that there will be only 7 days in a week: MONDAY, TUESDAY, ... and we will use only these
+• used when we know all possible values at compile time
+• enum = class (we can also add variables, methods, constructors)
+  • constructor will run with every loading of the enum (we can not explicitly create an object with "new" from enum)
+• enum is often used in switch statements
+ */
+
+enum Difficulty {
+    EASY,
+    MEDIUM,
+    HARD;
+}
+
+class Player{
+    Player(Difficulty diff){
+        //your code goes here
+        switch (diff){
+            case EASY:
+                System.out.println("You have 3000 bullets");
+                break;
+            case MEDIUM:
+                System.out.println("You have 2000 bullets");
+                break;
+            case HARD:
+                System.out.println("You have 1000 bullets");
+                break;
+        }
+    }
+}
+
+/* ----- THREAD - 1) EXTEND THE THREAD CLASS -----
+ • Disadvantage! Because we extend Thread, we can not extend from any other class.
+   • In real life, IMPLEMENTING THE RUNNABLE INTERFACE is used more.
+ */
+
+class PlayMusic extends Thread {
+    public void run() {      /* Our own override of the .run() method. After .start() which prepares the thread, .run() will automatically run
+                                this thread (=our .run() method) until the execution ended or the thread is killed or put to the waiting state.
+                              */
+        System.out.println("Playing music...");
+    }
+}
+
+class DrawImage extends Thread {
+    public void run() {
+        System.out.println("Drawing image....");
+    }
+}
+
+/* ----- THREAD - 2) IMPLEMENTING THE RUNNABLE INTERFACE -----
+ • Here we could also extend from any class.
+ */
+
+class MoveNpc implements Runnable {
+    public void run() {
+        try {
+            Thread.sleep(3000);  //Sleep for 3 seconds (Thread method). Can be interrupted and throw an exception, so always add try and catch!
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("NPC is walking...");
     }
 }
