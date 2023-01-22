@@ -5,8 +5,7 @@
  * Written by Lukáš Tomek in IntelliJ Idea.
  */
 
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -545,6 +544,112 @@ public class Main {
         //2) IMPLEMENTING THE RUNNABLE INTERFACE (better way)
         Thread mnObj = new Thread(new MoveNpc());
         mnObj.start();
+
+        /* ----- TYPES OF EXCEPTIONS -----
+           • CHECKED - checked when compiled. Program will not compile until not corrected. IDE will suggest correcting the code.
+             • subclasses of java.lang.Exception
+             • ex.: InterruptedException (when using Thread.sleep())
+           • UNCHECKED (RUNTIME) - checked at runtime.
+             • subclasses of java.lang.RuntimeException
+             • ex.: ArithmeticException (when dividing by zero)
+
+           ----- ARRAYLIST -----
+           • array of objects
+           • not fixed length (when objects added, it enlarges, when objets removed, it may shrink)
+           • "import java.util.ArrayList" is needed
+         */
+
+        //we create it the same way as any object
+        ArrayList colors1 = new ArrayList();
+
+        /* • Optional: specify TYPE and CAPACITY of objects the ArrayList will hold
+           • ArrayList stores objects - the type must be class
+           • If you need to store primitive variables (like "int"), use wrapper class instead (Integer)
+             • wrapper class = class with just one field (attribute) with the primitive type variable
+             • Java contains wrapper classes for all primitive variables (Byte, Short, Integer, Long, Float, Double, Character, Boolean),
+               so we can treat them like an object, if needed
+         */
+        ArrayList<String> colors2 = new ArrayList<String>(10);
+        //.add() - adding an object
+        colors2.add("Red");
+        colors2.add("Blue");
+        colors2.add("Green");
+        colors2.add("Orange");
+
+        //.remove() - removing an object
+        colors2.remove("Green");
+
+        //.contains() - returns true if the list contains the specified element
+        if (colors2.contains("Orange")) {
+            System.out.println("Orange is in ArrayList.");
+        }
+
+        //.get(int index) - returns the element at the specified position in the list
+        System.out.println("The first object in ArrayList: " + colors2.get(0));
+
+        //.size() - returns the number of elements in the list
+        System.out.println("Number of elements in ArrayList: " + colors2.size());
+
+        System.out.println("ArrayList colors2: " + colors2);
+
+        //.clear() - removes all the elements from the list
+        colors2.clear();
+
+        System.out.println("ArrayList is now empty: " + colors2);
+
+        /* ----- LINKEDLIST -----
+           • LinkedList vs. ArrayList
+             • ArrayList - better for rapid STORING and ACCESSING data, similar to array
+             • LinkedList - better for MANIPULATING data (e.g.: large number of inserts, deletes)
+           • LinkedList stores in one NODE (=element):
+             1) the object
+             2) memory address (or link) of the element that follows it
+           • LinkedList is stored in non-contiguous locations, unlike Arrays
+           • not possible to specify initial capacity
+           • "import java.util.LinkedList" is needed
+         */
+
+        //statement is the same as ArrayList and there are similar methods
+        LinkedList<String> colors3 = new LinkedList<String>();
+
+        /* ----- HASHMAP -----
+           • HashMap = maps value (KEY) to value (VALUE) and uses hash function for searching in the map
+           • advantage: it is possible to very quickly search for a value
+             • to achieve very quick search, HashMap class uses internally hash function in this way:
+               KEY → hashing function → hashcode value (=hash) → index in hashing table
+               • hash function maps data of arbitrary size (KEY) to fixed-size values (hash value)
+                 (even if KEY is a long string, its hash is short)
+                 (it is like a dictionary that translates KEY to HASH VALUE)
+               • hash function generates very different hash values for similar input parameters (KEYs) and minimize number of collisions
+                 (so every KEY has almost always its unique hash value)
+               • because search is performed on the hashing table and not on KEYs, it is very quick
+               • hash values and hashing table do not take much space, it is storage space-efficient
+           • it is like an array of objects, but instead of an implicit index, we can specify explicitly KEY
+           • we store KEY-VALUE pair (which is a data collection)
+          • HashMap cannot contain duplicate keys. Adding a new item with a key that already exists overwrites the old element.
+          • If you try to get a value that is not present in your map, it returns the value of "null".
+         */
+
+        HashMap<String, Integer> points = new HashMap<String, Integer>();
+        //put() - add key-value
+        points.put("Amy", 154);
+        points.put("Dave", 42);
+        points.put("Rob", 733);
+        //remove() - remove the mapping
+        points.remove("Rob");
+        //containsKey()
+        if (points.containsKey("Amy")){
+            System.out.println("Amy KEY is in this map.");
+        }
+        //containsValue()
+        if (points.containsValue(154)){
+            System.out.println("Value 154 is in this map.");
+        }
+        //get() - get value under key
+        System.out.println(points.get("Dave"));
+
+
+
 
 
 
