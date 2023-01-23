@@ -553,6 +553,7 @@ public class Main {
              • subclasses of java.lang.RuntimeException
              • ex.: ArithmeticException (when dividing by zero)
 
+           ----- L I S T -------
            ----- ARRAYLIST -----
            • array of objects
            • not fixed length (when objects added, it enlarges, when objets removed, it may shrink)
@@ -612,7 +613,8 @@ public class Main {
         //statement is the same as ArrayList and there are similar methods
         LinkedList<String> colors3 = new LinkedList<String>();
 
-        /* ----- HASHMAP -----
+        /* ----- M A P -------
+           ----- HASHMAP -----
            • HashMap = maps value (KEY) to value (VALUE) and uses hash function for searching in the map
            • advantage: it is possible to very quickly search for a value
              • to achieve very quick search, HashMap class uses internally hash function in this way:
@@ -626,8 +628,10 @@ public class Main {
                • hash values and hashing table do not take much space, it is storage space-efficient
            • it is like an array of objects, but instead of an implicit index, we can specify explicitly KEY
            • we store KEY-VALUE pair (which is a data collection)
-          • HashMap cannot contain duplicate keys. Adding a new item with a key that already exists overwrites the old element.
-          • If you try to get a value that is not present in your map, it returns the value of "null".
+          • HashMap cannot contain duplicate keys (duplicate values are OK). Adding a new item with a key that already exists overwrites the old element.
+          • only 1 key can be "null", any value can be "null"
+          • doesn’t maintain order of elements
+          • note: if we need to maintain order, we can use LinkedHashMap (ordered by insertion) or TreeMap (ordered by order of keys - slower with big data!)
          */
 
         HashMap<String, Integer> points = new HashMap<String, Integer>();
@@ -647,6 +651,26 @@ public class Main {
         }
         //get() - get value under key
         System.out.println(points.get("Dave"));
+
+        /* ----- S E T -----
+           ----- HASHSET -----
+           • stores objects
+           • can not store duplicate objects (and only 1 null value is permitted)
+             • advantage: avoids duplicates
+           • doesn’t maintain order of elements, you can’t find the position of element in HashSet
+           • hashCode() is used internally for indexing and comparison (because of this, when we override equals(), we have to also override hashCode() for a class)
+           • compared to ArrayList, HashSet has quicker searching and data access in huge data (because of the HashMap and hash table that is behind it)
+             • HashSet - contains - O(1) (constant time to find a value no matter how big is the database)
+             • ArrayList - contains - O(n) (with bigger data, the time to search is longer) ("O(n)" is called Big O notation")
+           • note: if we need to maintain order, we can use LinkedHashSet or TreeSet
+         */
+
+        HashSet<String> set = new HashSet<String>();
+        set.add("A");
+        set.add("B");
+        set.add("C");
+        System.out.println("HashSet set: " + set);
+        System.out.println("HashSet set size: " + set.size());
 
 
 
