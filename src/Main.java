@@ -672,6 +672,97 @@ public class Main {
         System.out.println("HashSet set: " + set);
         System.out.println("HashSet set size: " + set.size());
 
+        /* ----- SORTING LISTS (COLLECTION CLASS) -----
+           • java.util.Collections class - for the manipulation of data in various collection types
+           • static methods, can be called directly from class
+           • sort() - sorts elements
+         */
+
+        ArrayList<String> animals = new ArrayList<String>();
+        animals.add("tiger");
+        animals.add("cat");
+        animals.add("snake");
+        animals.add("dog");
+        animals.add("!bear");
+        animals.add("1mouse");
+        animals.add("2elephant");
+        animals.add("Cat");
+        animals.add("Dog");
+
+        Collections.sort(animals);
+        /* • result: !bear, 1mouse, 2elephant, Cat, Dog, cat, dog, snake, tiger
+           • it places uppercase first (based on ASCII values)
+           • time complexity: O(nlog(n))
+           • auxiliary space: O(1)
+         */
+        System.out.println(animals);
+
+        /* • if we need to sort it according to our own rules, we use Comparator interface (built in, or we can create own)
+           • sort(List list, ComparatorClass c)
+         */
+        Collections.sort(animals, String.CASE_INSENSITIVE_ORDER);
+        System.out.println(animals);
+
+        //returns minimal element
+        String min_animal = Collections.min(animals);
+        System.out.println(min_animal);
+
+        //returns maximal element
+        String max_animal = Collections.max(animals);
+        System.out.println(max_animal);
+
+        //reverses order of elements
+        Collections.reverse(animals);
+        System.out.println(animals);
+
+        //randomizes order of elements
+        Collections.shuffle(animals);
+        System.out.println(animals);
+
+        /* ----- ITERATORS -----
+           • it is a way to loop through (=iterate) various data structures
+           • Iterator is an object
+           • import java.util.Iterator
+           • different implementation for different data set
+           • imagine iterator to start BEFORE the first element (not ON the first element)
+         */
+
+        ArrayList<Integer> my_list = new ArrayList<Integer>();
+        my_list.add(15);
+        my_list.add(22);
+        my_list.add(12);
+        my_list.add(100);
+
+        Iterator it = my_list.iterator();    //iterator() places the iterator to the start (before the first element)
+        System.out.println(it.next());   //prints 15 (the first element)
+        System.out.println(it.next());   //prints 22
+        System.out.println(it.next());   //prints 12
+        it.remove();                     //removes 12
+        System.out.println(it.next());   //prints 100
+
+        //Iterator stores objects, so to store it in a variable as object, we must add a type parameter:
+        Iterator<Integer> it2 = my_list.iterator();  //=everything in my Iterator will be a String object
+        Integer print_me = it2.next();
+        System.out.println(print_me);   //prints 15
+
+        if (it2.hasNext()) {            //returns true, if there is next element
+            System.out.println(it2.next());
+        }
+
+        System.out.println("Let's loop through my_list!");
+        //using while and hasNext, we can loop through
+        Iterator<Integer> it3 = my_list.iterator();
+        while(it3.hasNext()) {
+            System.out.println(it3.next());
+        }
+
+        System.out.println("Let's loop through my_list once again!");
+        //looping through using for each (newer versions of Java)
+        for (Integer o : my_list) {
+            System.out.println(o);
+        }
+
+
 
 
 
