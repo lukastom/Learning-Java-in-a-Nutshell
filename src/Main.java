@@ -5,6 +5,8 @@
  * Written by Lukáš Tomek in IntelliJ Idea.
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Main {
@@ -672,7 +674,7 @@ public class Main {
         System.out.println("HashSet set: " + set);
         System.out.println("HashSet set size: " + set.size());
 
-        /* ----- SORTING LISTS (COLLECTION CLASS) -----
+        /* ----- SORTING LISTS (COLLECTIONS CLASS) -----
            • java.util.Collections class - for the manipulation of data in various collection types
            • static methods, can be called directly from class
            • sort() - sorts elements
@@ -762,46 +764,77 @@ public class Main {
             System.out.println(o);
         }
 
+        //ITERATING THROUGH MAP
+        HashMap<String, Integer> players = new HashMap<String, Integer>();
 
+        int max_number = 0;
+        String max_name = "";
+        for (Map.Entry<String, Integer> my_set : players.entrySet()) {    //• map entry = key-value pair
+                                                                          //• entry set = set of all entries
+            //this finds the biggest value
+            if (my_set.getValue() > max_number) {
+                max_number = my_set.getValue();
+                max_name = my_set.getKey();
+            }
+        }
 
+        /* ----- WORKING WITH FILES -----
+           • import java.io.File
+         */
 
+        //creating a File object, \ are escaped
+        File my_file = new File("C:\\Program Files\\GIMP 2\\bin\\gimp-2.10.exe");
 
+        if(my_file.exists()) {                                                              //exists() returns true if the file exists
+            System.out.println(my_file.getName() +  " exists! Gimp 2.1 installed!");        //getName() returns the name of the file
+        }
+        else {
+            System.out.println("The file does not exist");
+        }
 
+        //Reading file contents
+        try {
+            File my_file2 = new File("C:\\Program Files\\GIMP 2\\etc\\fonts\\conf.d\\README");
+            Scanner read_file = new Scanner(my_file2);             //before reading a file, we should set CHARSET and CHARTER!
+            //The Scanner class inherits from the Iterator, so it behaves like one.
+            while(read_file.hasNext()) {
+                System.out.println(read_file.nextLine());
+            }
+            read_file.close();    //it is good to close the file, but this should be done by TRY WITH RESOURCES, not like this!
+                                  //reason: if it throws an exception, the file would not be closed
+                                  //TRY WITH RESOURCES will automatically close the file
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("The file is missing.");
+        }
 
+        //Creating a new file
+        try {
+            /* • folders must already exist, this does not create folders
+               • this can not create file at places, where you need administrator access (e.g. C drive root in Windows)
+                 • administrator access can be obtained only by running this program as administrator
+             */
+            Formatter file = new Formatter("sololearn-test.txt");   /* • if the file already exists, this will overwrite it!
+                                                                               • this will create file at where your Java project is */
+            file.format("%s %s %s", "1","Peter", "Pan \r\n");
+            /* ----- NEWLINE -----
+               • Windows: \r\n (why: return (all the way to left), newline (go down))
+               • Linux: \n
+               • Mac: \r
+               • platform independent: System.lineSeparator()
+               • platform independent (works only sometimes, e.g. in printf): %n
+             */
+            file.format("%s %s %s", "2","Joe", "Green" + System.lineSeparator());   //Platform independent line separator
+            file.format("%s %s %s", "3","Joseph", "Great");
+            file.close();
 
+            System.out.printf("Done%n");
 
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //------------------------------------------------METHODS---------------------------------------------------------
     }
 
     //declaration of a method
@@ -843,27 +876,7 @@ public class Main {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//------------------------------------------------CLASSES---------------------------------------------------------
 }
 
 /* ----- CLASS DECLARATION -----
