@@ -1250,6 +1250,6 @@ class MoveNpc implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("NPC is walking...");
+        System.out.println("NPC is walking....");
     }
 }
