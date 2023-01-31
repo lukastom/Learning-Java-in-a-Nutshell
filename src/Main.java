@@ -259,7 +259,7 @@ public class Main {
 
         /* ----- FINAL -----
            • final variable can not be changed
-           • final method can't be overridden (?????)
+           • final method can't be overridden
            • inheritance of final class is not allowed
          */
 
