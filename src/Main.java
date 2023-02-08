@@ -32,6 +32,16 @@ public class Main {
         d /= x;
         ee %= x;
 
+        // ----- CONVERTING VARIABLE TYPES -----
+
+        //String to int
+        String myStringValue = "121314";
+        int myIntegerValue = Integer.valueOf(myStringValue);
+        //to double: Double.valueOf(myStringValue);
+        //to boolean: Boolean.valueOf(myStringValue);   //This is case insensitive. Other string than "true" returns false.
+
+        System.out.println(myIntegerValue);
+
         //----- USER INPUT -----
         System.out.println("Write down your SURNAME and press Enter:");
         Scanner my_scanner = new Scanner(System.in);
@@ -43,6 +53,7 @@ public class Main {
 
         // ----- OUTPUT -----
         System.out.println(x);
+        //IntelliJ Idea shortcut - sout
         //Incrementing and decrementing by 1. Difference: "y++" uses y first, increments after but "++y" increments first, uses y after.
         System.out.println(y++);
         System.out.println(y--);
