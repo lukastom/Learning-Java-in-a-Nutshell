@@ -150,6 +150,12 @@ public class Main {
         //format: for ([start with this];[condition];[increment/decrement])
         for (int test = 5; test>0; test--) {
             System.out.println(test);
+            if (test == 3) {
+                continue; //returns to the start of the loop
+            }
+            if (test == 2) {
+                break; //jumps out of the loop (will ignore the rest of the code in the loop)
+            }
         }
 
         //this loop will run at least once, even if the condition is not true
