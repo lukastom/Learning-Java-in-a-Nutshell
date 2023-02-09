@@ -53,7 +53,7 @@ public class Main {
 
         // ----- OUTPUT -----
         System.out.println(x);
-        //IntelliJ Idea shortcut - sout
+        //IntelliJ Idea shortcut: sout
         //Incrementing and decrementing by 1. Difference: "y++" uses y first, increments after but "++y" increments first, uses y after.
         System.out.println(y++);
         System.out.println(y--);
@@ -94,7 +94,7 @@ public class Main {
         //Note: The if statements can be nested ad libitum (if statement within if statement)
         if (age>=18){
             System.out.println("Enter permitted. Your age is right.");
-        } else if (age<18) {
+        } else if (age<18) {   //if one of the conditions is true, the rest of the else if/else conditions will be ignored!
             System.out.println("Sorry, you are too young.");
         } else {
             System.out.println("Weird.");
