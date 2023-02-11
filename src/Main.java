@@ -857,6 +857,18 @@ public class Main {
     //------------------------------------------------METHODS---------------------------------------------------------
     }
 
+    //variable defined in a method is visible only in that method
+
+    /*-----CALL STACK-----
+      • used to keep track of method calls
+      • made up of frames — one for each method call (newer calls above)
+        • a frame stores: local variables, parameters passed, return address, etc. (depends on type of CPU)
+      • recursion can make the stack very big (space complexity is high)
+        • can be optimized with TAIL CALL OPTIMIZATION - TCO - Java does not have it!
+        • if we run out of space, StackOverflowError happens
+     */
+
+
     //declaration of a method
     static void sayHi(){                      //"void" = no RETURN value
         System.out.println("Hi everyone!");
