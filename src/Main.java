@@ -36,11 +36,13 @@ public class Main {
 
         //String to int
         String myStringValue = "121314";
-        int myIntegerValue = Integer.valueOf(myStringValue);
+        int myIntegerValue1 = Integer.valueOf(myStringValue);  //valueOf puts the integer into object (=BOXING) and assigning it to integer
+                                                               //variable is actually UNBOXING (from object to primitive value)
+        int myIntegerValue2 = Integer.parseInt(myStringValue); //This is better in this case - parseInt returns value (not value in object).
         //to double: Double.valueOf(myStringValue);
         //to boolean: Boolean.valueOf(myStringValue);   //This is case insensitive. Other string than "true" returns false.
 
-        System.out.println(myIntegerValue);
+        System.out.println(myIntegerValue1);
 
         //----- USER INPUT -----
         System.out.println("Write down your SURNAME and press Enter:");
@@ -151,6 +153,7 @@ public class Main {
         for (int test = 5; test>0; test--) {
             System.out.println(test);
             if (test == 3) {
+                int number_in_loop = 1;  //variables introduced in a loop work only within the loop!
                 continue; //returns to the start of the loop
             }
             if (test == 2) {
