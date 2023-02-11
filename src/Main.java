@@ -864,7 +864,7 @@ public class Main {
 
     //declaration of a method with PARAMETERS and RETURN value
     static int mySum(int a, int b){           //"int" defines return type, also the 2 parameters are "int" type. "void" missing = RETURN.
-        return a+b;
+        return a+b;   //in void method we can end the method by using return; (without value)
     }
 
     //OVERLOADING (methods with the same name differing in parameters (type, number or both) (=COMPILE-TIME POLYMORPHISM)
