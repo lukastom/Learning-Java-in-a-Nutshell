@@ -42,16 +42,19 @@ public class Main {
         //to double: Double.valueOf(myStringValue);
         //to boolean: Boolean.valueOf(myStringValue);   //This is case insensitive. Other string than "true" returns false.
 
+        // ----- CAMEL CASE -----
+        //It is Java standard and good code practice to name variables and methods like: abcDefGhi (not abc_def_ghi like in some other languages)..
+
         System.out.println(myIntegerValue1);
 
         //----- USER INPUT -----
         System.out.println("Write down your SURNAME and press Enter:");
-        Scanner my_scanner = new Scanner(System.in);
-        String name = my_scanner.nextLine();
+        Scanner myScanner = new Scanner(System.in);
+        String name = myScanner.nextLine();
         System.out.println("Write down your AGE and press Enter:");
-        int age = my_scanner.nextInt();
+        int age = myScanner.nextInt();
         System.out.println("Write down your MONEY available and press Enter (in USD):");
-        int money = my_scanner.nextInt();
+        int money = myScanner.nextInt();
 
         // ----- OUTPUT -----
         System.out.println(x);
@@ -153,7 +156,7 @@ public class Main {
         for (int test = 5; test>0; test--) {
             System.out.println(test);
             if (test == 3) {
-                int number_in_loop = 1;  //variables introduced in a loop work only within the loop!
+                int numberInLoop = 1;  //variables introduced in a loop work only within the loop!
                 continue; //returns to the start of the loop
             }
             if (test == 2) {
@@ -169,27 +172,28 @@ public class Main {
         } while (x<0);
 
         // ----- ARRAYS -----
-        int[] my_array1 = new int[3]; //another variant: int my_array1[] = new int[3];
-        my_array1[0] = 5;
-        my_array1[1] = 6;
-        my_array1[2] = 7;
-        System.out.println(my_array1[1]); //where [1] is an index
+        int[] myArray1 = new int[3]; //another variant: int myArray1[] = new int[3];
+                                      //Array is an object. So here, myArray1 is a reference to the object, we use the  keyword NEW.
+        myArray1[0] = 5;
+        myArray1[1] = 6;
+        myArray1[2] = 7;
+        System.out.println(myArray1[1]); //where [1] is an index
 
         //array literal
-        String[] my_array2 = {"A", "B", "C", "D"};
-        System.out.println(my_array2.length); //array length - can be used for looping through the array
+        String[] myArray2 = {"A", "B", "C", "D"};  //even if we did not use the keyword NEW, myArray2 is still a reference to the object
+        System.out.println(myArray2.length); //array length - can be used for looping through the array
         //note: "literal" means data, that go to the variable. Examples of literals: "A",'CH',524.05f
 
         //for each loop
-        for (String f: my_array2){ //symbol ":" is read "in" - that also helps to better understand this code
+        for (String f: myArray2){ //symbol ":" is read "in" - that also helps to better understand this code
             System.out.println(f);
         }
 
         //multidimensional arrays (arrays in arrays)
-        int[][] my_array3 = { {1,2,3} , {4,5,6} };
-        System.out.println(my_array3[1][2]);
+        int[][] myArray3 = { {1,2,3} , {4,5,6} };
+        System.out.println(myArray3[1][2]);
         //you can also imagine it like rows and columns
-        int[][] my_array4 = {
+        int[][] myArray4 = {
                               {1,2,3},
                               {4,5,6},
                               {7}
@@ -212,24 +216,24 @@ public class Main {
         System.out.println(mySum(5,9));
 
         //creating an object from a class (class declaration: see end of this file)
-        Dog my_dog = new Dog();
-        //note: the new object is created just by "new Dog()". In variable "my_dog" is not the object but only an address pointing to the object (=reference)!
+        Dog myDog = new Dog();
+        //note: the new object is created just by "new Dog()". In variable "myDog" is not the object but only an address pointing to the object (=reference)!
         //calling its method
-        my_dog.bark();
+        myDog.bark();
 
         //accessing object attributes directly (do not do this in real life, rather use getter and setter)
-        Car my_ford = new Car();
-        my_ford.age = 21;
-        my_ford.type = "Kodiaq";
-        my_ford.horn();
+        Car myFord = new Car();
+        myFord.age = 21;
+        myFord.type = "Kodiaq";
+        myFord.horn();
 
         //creating an object with a CONSTRUCTOR (=a method that automatically runs after creating an object)
-        Food my_food = new Food();
-        House my_house = new House("white");
+        Food myFood = new Food();
+        House myHouse = new House("white");
 
         //demonstrating REFERENCE variables (details and class declaration - see end of this file)
-        PersonaBirthday my_persona_birthday = new PersonaBirthday();
-        my_persona_birthday.main();
+        PersonaBirthday myPersonaBirthday = new PersonaBirthday();
+        myPersonaBirthday.main();
 
         // ----- MATH CLASS -----
         int m1 = Math.abs(-28);            //absolute value
@@ -291,11 +295,11 @@ public class Main {
            • it helps to avoid name conflicts, control access to classes, group classes together
            • under a package there can be a subpackage
            • when a class is moved in a package, this code automatically appears at the start of that class file:
-             package package_name;
+             package packageName;
            • to import class from a package, use this code at the start of the Main class:
-             import package_name.Class_name;
+             import packageName.ClassName;
            • to import all classes from a package:
-             import package_name.*
+             import packageName.*
 
            ----- ENCAPSULATION -----
            • variables of one class are hidden from the other classes
@@ -304,7 +308,7 @@ public class Main {
            ----- INHERITANCE -----
            • subclass copies the code (methods and variables) of superclass
            • subclass (derived class, child class) EXTENDS superclass (base class, parent class)
-           • More_specific extends Less_specific (we can read "extends" as "is a" and it makes sense, for example "Dog is an Animal")
+           • MoreSpecific extends LessSpecific (we can read "extends" as "is a" and it makes sense, for example "Dog is an Animal")
            • it allows reusing code, we can build a new class based on an existing class
                 • in the subclass, all the non-private methods and variables (=data MEMBERS, MEMBER methods) are "copied" (inherited)
                   from the superclass
@@ -342,12 +346,12 @@ public class Main {
         */
 
         Animal animal = new Animal();
-        Animal animal_bee = new Bee();    //disadvantage of creating the variable from superclass (=UPCASTING): we can access
+        Animal animalBee = new Bee();    //disadvantage of creating the variable from superclass (=UPCASTING): we can access
                                           //only the overridden methods, not the new (added) subclass methods!
         Bear bear = new Bear();
 
         animal.makeSound();
-        animal_bee.makeSound();
+        animalBee.makeSound();
         bear.makeSound();
 
         //If we want to access not only the overridden methods but also the added methods, we have to create the variable from the subclass:
@@ -355,20 +359,20 @@ public class Main {
         bee.collectHoney();
 
         //OVERLOADING (methods with the same name differing in parameters (type, number or both) (=COMPILE-TIME POLYMORPHISM)
-        System.out.println(max_number(8, 17));
-        System.out.println(max_number(3.14, 7.68));
+        System.out.println(maxNumber(8, 17));
+        System.out.println(maxNumber(3.14, 7.68));
 
         // ----- ABSTRACT CLASS, ABSTRACT METHOD ----- (see the classes at the end of this file)
 
-        Order fedEx_order = new FedEx();    //"Order" is the abstract class
-        //"FedEx fedex_order = new FedEx();" would work too
-        fedEx_order.sendOrder();
+        Order fedExOrder = new FedEx();    //"Order" is the abstract class
+        //"FedEx fedExOrder = new FedEx();" would work too
+        fedExOrder.sendOrder();
 
         /*
           ----- INTERFACE ----- (see the classes at the end of this file)
         */
-        LowIncome poor_client = new LowIncome();
-        poor_client.offerProduct();
+        LowIncome poorClient = new LowIncome();
+        poorClient.offerProduct();
 
         /*
           ----- TYPE CASTING -----
@@ -385,7 +389,7 @@ public class Main {
            • result: only superclass methods (and overridden methods) are accessible from object created from the subclass
            • use: it allows creating arrays or collections (Lists, Maps, Sets, etc.) of the parent type where child objects are stored.
          */
-        Animal my_animal = new Bee();     //object created from subclass is casted to variable of superclass type
+        Animal myAnimal = new Bee();     //object created from subclass is casted to variable of superclass type
 
         /* ----- CLASS DOWNCASTING -----
           • When you downcast, you're basically saying, hey I know this particular Animal is actually a Dog, because
@@ -396,11 +400,11 @@ public class Main {
             • when using a framework (like coding for Android), where we want to access the subclass methods from a superclass
           • The result is: even if it is superclass type, we can call the subclass overridden methods this way
          */
-        //Bee my_bee = new Animal();     //This is not allowed! We can not say "animal IS A bee"
-        Bee my_bee = (Bee) my_animal;
-        my_bee.collectHoney();
+        //Bee myBee = new Animal();     //This is not allowed! We can not say "animal IS A bee"
+        Bee myBee = (Bee) myAnimal;
+        myBee.collectHoney();
         //shorter form:
-        ((Bee) my_animal).collectHoney();
+        ((Bee) myAnimal).collectHoney();
 
         /* ----- ANONYMOUS INNER CLASS, ANNOTATIONS -----
            • = inner class without name, that overrides (modify) a method in an object
@@ -412,12 +416,12 @@ public class Main {
              • if we use @Override annotation, but the code is actually not an override, the program will not compile.
                So, by using @Override annotation, we tell the compiler, that our intention was to override.
          */
-        Bee my_cute_bee = new Bee() {
+        Bee myCuteBee = new Bee() {
             @Override public void collectHoney() {
                 System.out.println("Oh man, the bee collects honey, whoooo yeaaaaah. Overriding!");
             }
         };
-        my_cute_bee.collectHoney();
+        myCuteBee.collectHoney();
 
         // ----- NESTED INNER CLASS ----- (see the class at end of this file)
         Outer obj = new Outer();     //this runs the constructor, which runs the inner class
@@ -426,36 +430,36 @@ public class Main {
           • "==" - operator - compares reference (IDENTITY)
           • "equals()" - method - compares contents (EQUIVALENCY)
          */
-        String a_name = "John";
-        String b_name = "John";
+        String aName = "John";
+        String bName = "John";
 
-        System.out.println(a_name==b_name);
-        System.out.println(a_name.equals(b_name));
+        System.out.println(aName==bName);
+        System.out.println(aName.equals(bName));
 
-        A obj_a = new A();
-        obj_a.sayHi();
+        A objA = new A();
+        objA.sayHi();
 
-        A obj_b = new A();
-        obj_b.sayHi();
+        A objB = new A();
+        objB.sayHi();
 
-        System.out.println(obj_a==obj_b);   //This is false, because the 2 variables reference 2 different objects.
-                                            //References (memory addresses) are compared here.
-                                            //It's like a question: do they both reference the same object?
+        System.out.println(objA==objB);   //This is false, because the 2 variables reference 2 different objects.
+                                          //References (memory addresses) are compared here.
+                                          //It's like a question: do they both reference the same object?
 
-        A obj_c = obj_a;
-        System.out.println(obj_c==obj_a);   //This is true, because both variables reference the same object.
-                                            // References (memory addresses) are compared here.
+        A objC = objA;
+        System.out.println(objC==objA);   //This is true, because both variables reference the same object.
+                                          // References (memory addresses) are compared here.
 
-        System.out.println(obj_c.equals(obj_a));    //This is true, because both variables reference the same object
-                                                    //Reason: default Java .equals():
-                                                    //1) compares object CONTENTS && 2) both variables must reference the same object
+        System.out.println(objC.equals(objA));    //This is true, because both variables reference the same object
+                                                  //Reason: default Java .equals():
+                                                  //1) compares object CONTENTS && 2) both variables must reference the same object
 
         System.out.println("Thanks to our .equals() override, this is now true:");
-        System.out.println(obj_a.equals(obj_b));      /* Without our own equals() override THIS IS FALSE!!
-                                                         • Reason: default Java equals() implementation
-                                                           returns true if the objects' CONTENTS is the same
-                                                           AND ONLY if the 2 variables are non-null and both
-                                                           point to the *same reference* (if obj_a==obj_b also returns true)!
+        System.out.println(objA.equals(objB));      /* Without our own equals() override THIS IS FALSE!!
+                                                       • Reason: default Java equals() implementation
+                                                         returns true if the objects' CONTENTS is the same
+                                                         AND ONLY if the 2 variables are non-null and both
+                                                         point to the *same reference* (if objA==objB also returns true)!
 
           • If we want to compare 2 objects having DIFFERENT IDENTITY (different reference) but the SAME CONTENTS, we must create
             our own equals() override.
@@ -479,6 +483,12 @@ public class Main {
            • List and documentation: https://docs.oracle.com/en/java/javase/19/docs/api/index.html
            • import the complete needed package: import java.util.*;
 
+           ----- PRINT DEBUGGING -----
+           • adding System.out.println() statements to program to see how variable values are changing, where we are in program etc.
+
+           ----- CORNER CASES -----
+           • non traditional input like 0, -1000000000000000 etc. - the goal is to test, if the program can survive weird inputs
+
            ----- EXCEPTION HANDLING (TRY-CATCH) -----
            • Exception = “unwanted or unexpected event”, which occurs during the execution of the program (at run-time) and terminates it.
              • Examples:
@@ -492,8 +502,8 @@ public class Main {
 
         We await that in the "try" block, an exception could occur */
         try {
-            int my_array[ ] = new int[2];
-            System.out.println(my_array[5]);  //this is wrong
+            int myArray[ ] = new int[2];
+            System.out.println(myArray[5]);  //this is wrong
         /* • If the type of exception that occurred is listed in a catch block, the exception is passed to the catch block
              like an argument into a method.
            • The "Exception" type can be used to catch all possible exceptions.
@@ -726,12 +736,12 @@ public class Main {
         System.out.println(animals);
 
         //returns minimal element
-        String min_animal = Collections.min(animals);
-        System.out.println(min_animal);
+        String minAnimal = Collections.min(animals);
+        System.out.println(minAnimal);
 
         //returns maximal element
-        String max_animal = Collections.max(animals);
-        System.out.println(max_animal);
+        String maxAnimal = Collections.max(animals);
+        System.out.println(maxAnimal);
 
         //reverses order of elements
         Collections.reverse(animals);
@@ -749,13 +759,13 @@ public class Main {
            • imagine iterator to start BEFORE the first element (not ON the first element)
          */
 
-        ArrayList<Integer> my_list = new ArrayList<Integer>();
-        my_list.add(15);
-        my_list.add(22);
-        my_list.add(12);
-        my_list.add(100);
+        ArrayList<Integer> myList = new ArrayList<Integer>();
+        myList.add(15);
+        myList.add(22);
+        myList.add(12);
+        myList.add(100);
 
-        Iterator it = my_list.iterator();    //iterator() places the iterator to the start (before the first element)
+        Iterator it = myList.iterator();    //iterator() places the iterator to the start (before the first element)
         System.out.println(it.next());   //prints 15 (the first element)
         System.out.println(it.next());   //prints 22
         System.out.println(it.next());   //prints 12
@@ -763,38 +773,38 @@ public class Main {
         System.out.println(it.next());   //prints 100
 
         //Iterator stores objects, so to store it in a variable as object, we must add a type parameter:
-        Iterator<Integer> it2 = my_list.iterator();  //=everything in my Iterator will be a String object
-        Integer print_me = it2.next();
-        System.out.println(print_me);   //prints 15
+        Iterator<Integer> it2 = myList.iterator();  //=everything in my Iterator will be a String object
+        Integer printMe = it2.next();
+        System.out.println(printMe);   //prints 15
 
         if (it2.hasNext()) {            //returns true, if there is next element
             System.out.println(it2.next());
         }
 
-        System.out.println("Let's loop through my_list!");
+        System.out.println("Let's loop through myList!");
         //using while and hasNext, we can loop through
-        Iterator<Integer> it3 = my_list.iterator();
+        Iterator<Integer> it3 = myList.iterator();
         while(it3.hasNext()) {
             System.out.println(it3.next());
         }
 
-        System.out.println("Let's loop through my_list once again!");
+        System.out.println("Let's loop through myList once again!");
         //looping through using for each (newer versions of Java)
-        for (Integer o : my_list) {
+        for (Integer o : myList) {
             System.out.println(o);
         }
 
         //ITERATING THROUGH MAP
         HashMap<String, Integer> players = new HashMap<String, Integer>();
 
-        int max_number = 0;
-        String max_name = "";
-        for (Map.Entry<String, Integer> my_set : players.entrySet()) {    //• map entry = key-value pair
+        int maxNumber = 0;
+        String maxName = "";
+        for (Map.Entry<String, Integer> mySet : players.entrySet()) {    //• map entry = key-value pair
                                                                           //• entry set = set of all entries
             //this finds the biggest value
-            if (my_set.getValue() > max_number) {
-                max_number = my_set.getValue();
-                max_name = my_set.getKey();
+            if (mySet.getValue() > maxNumber) {
+                maxNumber = mySet.getValue();
+                maxName = mySet.getKey();
             }
         }
 
@@ -803,10 +813,10 @@ public class Main {
          */
 
         //creating a File object, \ are escaped
-        File my_file = new File("C:\\Program Files\\GIMP 2\\bin\\gimp-2.10.exe");
+        File myFile = new File("C:\\Program Files\\GIMP 2\\bin\\gimp-2.10.exe");
 
-        if(my_file.exists()) {                                                              //exists() returns true if the file exists
-            System.out.println(my_file.getName() +  " exists! Gimp 2.1 installed!");        //getName() returns the name of the file
+        if(myFile.exists()) {                                                              //exists() returns true if the file exists
+            System.out.println(myFile.getName() +  " exists! Gimp 2.1 installed!");        //getName() returns the name of the file
         }
         else {
             System.out.println("The file does not exist");
@@ -814,13 +824,13 @@ public class Main {
 
         //Reading file contents
         try {
-            File my_file2 = new File("C:\\Program Files\\GIMP 2\\etc\\fonts\\conf.d\\README");
-            Scanner read_file = new Scanner(my_file2);             //before reading a file, we should set CHARSET and CHARTER!
+            File myFile2 = new File("C:\\Program Files\\GIMP 2\\etc\\fonts\\conf.d\\README");
+            Scanner readFile = new Scanner(myFile2);             //before reading a file, we should set CHARSET and CHARTER!
             //The Scanner class inherits from the Iterator, so it behaves like one.
-            while(read_file.hasNext()) {
-                System.out.println(read_file.nextLine());
+            while(readFile.hasNext()) {
+                System.out.println(readFile.nextLine());
             }
-            read_file.close();    //it is good to close the file, but this should be done by TRY WITH RESOURCES, not like this!
+            readFile.close();    //it is good to close the file, but this should be done by TRY WITH RESOURCES, not like this!
                                   //reason: if it throws an exception, the file would not be closed
                                   //TRY WITH RESOURCES will automatically close the file
         }
@@ -880,7 +890,7 @@ public class Main {
     }
 
     //OVERLOADING (methods with the same name differing in parameters (type, number or both) (=COMPILE-TIME POLYMORPHISM)
-    static double max_number(double a, double b) {
+    static double maxNumber(double a, double b) {
         if(a > b) {
             return a;
         }
@@ -888,7 +898,7 @@ public class Main {
             return b;
         }
     }
-    static int max_number(int a, int b) {
+    static int maxNumber(int a, int b) {
         if(a > b) {
             return a;
         }
@@ -995,10 +1005,10 @@ class House {
 class Plant {
     private String color;
 
-    Plant() {         //For creating an object like: Plant my_plant1 = new Plant();
+    Plant() {         //For creating an object like: Plant myPlant1 = new Plant();
         this.setColor("red");
     }
-    Plant(String c) {       //For creating an object like: Plant my_plant2 = new Plant("brown");
+    Plant(String c) {       //For creating an object like: Plant myPlant2 = new Plant("brown");
         this.setColor(c);
     }
 
@@ -1081,7 +1091,7 @@ class Employee{
     }
 }
 
-class Programmer extends Employee{      //More_specific extends Less_specific, Programmer IS AN Employee
+class Programmer extends Employee{      //MoreSpecific extends LessSpecific, Programmer IS AN Employee
     String language;
 
     Programmer() {
@@ -1142,7 +1152,7 @@ class Bear extends Animal {
 */
 
 abstract class Order {
-    int order_id = 0;
+    int orderId = 0;
     abstract void sendOrder();
 }
 class FedEx extends Order {
