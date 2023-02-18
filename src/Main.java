@@ -864,6 +864,37 @@ public class Main {
             System.out.println("Error: " + e);
         }
 
+        //----- GENERICS ----- (see the explanation and class examples at the end of this file)
+        Printer<Integer> printer = new Printer<Integer>(145000);
+        printer.print();
+
+        Printer<Double> doublePrinter = new Printer<Double>(145.000);
+        doublePrinter.print();
+
+        //----- BOUNDED GENERICS ----- (see the explanation and class examples at the end of this file)
+        Bee beautifulBee = new Bee();
+        AnimalHouse<Bee> beeHouse = new AnimalHouse<Bee>(beautifulBee);
+        beeHouse.loudSound();
+
+        Bear beautifulBear = new Bear();
+        AnimalHouse<Bear> bearHouse = new AnimalHouse<Bear>(beautifulBear);
+        bearHouse.loudSound();
+
+        //------ METHOD WITH GENERICS -----  (see the method examples in Methods part)
+        shout("Yeah");
+        shout(5000000);
+        Dog littleDog = new Dog();
+        shoutMore(5000,littleDog);
+
+        //----- GENERICS WILDCARD-----
+        List<Integer> intList = new ArrayList<>();
+        intList.add(10);
+        printList(intList);
+
+        List<String> strList = new ArrayList<>();
+        strList.add("You are my love.");
+        printList(strList);
+
     //------------------------------------------------METHODS---------------------------------------------------------
     }
 
@@ -917,6 +948,30 @@ public class Main {
             return a / b;
         }
     }
+
+    /* ----- METHOD WITH GENERICS ------ */
+    static <T> void shout(T thingToShout) {
+        System.out.println(thingToShout + "!!!!!");
+    }
+    /* return type also can be e.g. T like this:
+       static <T> T shout(T thingToShout)
+
+       Example of more generics:                 */
+    static <T, V> void shoutMore(T thingToShout1, V thingToShout2) {
+        System.out.println(thingToShout1 + "!!!!!!!!!!");
+        System.out.println(thingToShout2 + "!!!!!!!!!!");
+    }
+
+    /* ----- GENERICS WILDCARD -----
+       • when we do not know yet what generic type will be used
+         (List of anything, we do not know if it will be a List of Integers or Strings...)
+     */
+    static void printList(List<?> myList){
+        System.out.println();
+    }
+    /* We can also add bounds. Example:
+       static void printList(List<? extends Animal> myList)
+     */
 
 //------------------------------------------------CLASSES---------------------------------------------------------
 }
@@ -1295,3 +1350,48 @@ class MoveNpc implements Runnable {
         System.out.println("NPC is walking...");
     }
 }
+
+/* ----- GENERICS -----
+ • Generics = type passed as a parameter
+   (We want to pass a parameter to a class, method...and we don't yet know if it will be int or String etc.
+    The class/method will be universal (GENERIC), working with various parameter types.
+    So, there will be a special "GENERICS" parameter <T>, where we can specify the type, e.g. <Integer>, <String>.
+    The type must be an object, not primitive (Integer, not int)).
+ */
+
+class Printer <T> {
+
+    T thingToPrint;  //T could be Integer, String, Boolean...it will work for all
+
+    public Printer (T thingToPrint) {
+        this.thingToPrint = thingToPrint;
+    }
+
+    public void print(){
+        System.out.println(thingToPrint);
+    }
+
+}
+
+/* -----BOUNDED GENERICS-----
+   • this limits possible types to only types of classes that inherit from the class Animal
+ */
+
+class AnimalHouse <T extends Animal> {
+
+    T ourAnimal;  //T could be Bee, Bear...(classes that extend Animal class)
+
+    public AnimalHouse (T ourAnimal) {
+        this.ourAnimal = ourAnimal;
+    }
+
+    public void loudSound(){
+        ourAnimal.makeSound();   //possible to call methods from the Bee, Bear, ...classes
+        System.out.println(ourAnimal);
+    }
+
+}
+
+/* • Multiple limits (1 class, several interfaces):
+     class AnimalFence <T extends Animal & Interface1 & Interface2>
+ */
