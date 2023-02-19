@@ -179,7 +179,7 @@ public class Main {
         myArray1[2] = 7;
         System.out.println(myArray1[1]); //where [1] is an index
 
-        //array literal
+        //array literal (shortcut to create an array)
         String[] myArray2 = {"A", "B", "C", "D"};  //even if we did not use the keyword NEW, myArray2 is still a reference to the object
         System.out.println(myArray2.length); //array length - can be used for looping through the array
         //note: "literal" means data, that go to the variable. Examples of literals: "A",'CH',524.05f
@@ -198,6 +198,23 @@ public class Main {
                               {4,5,6},
                               {7}
                             };
+
+        // ----- STRING METHODS -----
+
+        //Splitting a String
+        System.out.println("String methods! Wow!");
+        String text = "first second third fourth";
+        String[] pieces = text.split(" "); //splits the string around the string (regex) in parameter. The resulting parts go to the array elements.
+        System.out.println(pieces[0]);
+        System.out.println(pieces[1]);
+        System.out.println(pieces[2]);
+        System.out.println(pieces[3]);
+
+        //Finding a substring
+        String niceText = "canister";
+        if (niceText.contains("can")) {
+            System.out.println("Can was found.");
+        }
 
         // ----- OOP -----
         /* • an OBJECT has:
@@ -431,10 +448,12 @@ public class Main {
           • "equals()" - method - compares contents (EQUIVALENCY)
          */
         String aName = "John";
-        String bName = "John";
+        String bName = "Joh";
+        bName += "n";    //Because of immutability of String, this creates a new object, that bName now references to, so aName and bName are now different objects.
 
-        System.out.println(aName==bName);
-        System.out.println(aName.equals(bName));
+        System.out.println("String comparison:");
+        System.out.println(aName==bName);    //This is false! (It would be true, if both variables was initiated with literals ("John" and "John") referencing the same object.)
+        System.out.println(aName.equals(bName));   //This is true. Note: as we see, in the case of String variables, we should always use equals() to be safe.
 
         A objA = new A();
         objA.sayHi();
@@ -603,6 +622,11 @@ public class Main {
                so we can treat them like an object, if needed
          */
         ArrayList<String> colors2 = new ArrayList<String>(10);
+        /* This is also possible:
+           ArrayList<String> colors2 = new ArrayList<>(10);   //This is exactly the same, <> is called DIAMOND OPERATOR - it is just a shortcut to not repeat the code unnecessarily.
+                                                              //Compiler will still create it as new ArrayList<String>(10). It will copy the type from the beginning of the line.
+         */
+
         //.add() - adding an object
         colors2.add("Red");
         colors2.add("Blue");
@@ -611,6 +635,10 @@ public class Main {
 
         //.remove() - removing an object
         colors2.remove("Green");
+        /*• colors2.remove(0); would remove an element with index 0
+          • When removing, the indexes shift, (so if we have indexes 0,1,2, and we remove 1, the indexes of remaining elements will be 0,1 - not 0,3!)
+          • If we have ArrayList<Integer>, and want to remove using element (not index), we have to do it like this: list.remove(Integer.valueOf(15));
+         */
 
         //.contains() - returns true if the list contains the specified element
         if (colors2.contains("Orange")) {
@@ -971,7 +999,15 @@ public class Main {
     }
     /* We can also add bounds. Example:
        static void printList(List<? extends Animal> myList)
+
+
+       ----- ARRAYLIST PASSED AS A PARAMETER TO METHOD -----
+       • The method operates on the actual ArrayList that is passed to it! The reason is, that the method receives a REFERENCE to the real value.
+         • This is the same with array (=object) when we pass it to method like a parameter.
      */
+    public static void removeFirst(ArrayList<Integer> numbers) {
+        numbers.remove(0);   //this removes the 1st value of the original ArrayList!
+    }
 
 //------------------------------------------------CLASSES---------------------------------------------------------
 }
